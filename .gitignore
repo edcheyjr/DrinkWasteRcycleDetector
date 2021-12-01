@@ -6,4 +6,4 @@ static/detect
 # yolov5
 yolov5
 # uploaded images
-static/uploads/*
+static/uploads
