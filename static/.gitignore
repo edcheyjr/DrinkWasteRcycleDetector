@@ -1,6 +1,6 @@
 # detected images
-/detect
+./detect
 # yolov5
-/yolov5
+./yolov5
 # uploaded images
-/uploads
+./uploads
