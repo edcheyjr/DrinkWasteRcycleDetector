@@ -1,0 +1,8 @@
+# detected images
+/detect
+# yolov5
+/yolov5
+# uploaded images
+/uploads
+#cache
+/__pycache__

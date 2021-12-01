@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SmartWaste | testform</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='/css/style.css')}}"
+    />
+      <link
+      href="{{url_for('static', filename='css/index.css')}}"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+  </head>
+  <body>
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section">Upload Image or video for testing</h2>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-lg-10">
+            <div
+              class="wrapper img"
+              style="background-image: url(../static/img/img.jpg)"
+            >
+              <div class="row">
+                <div class="col-md-9 col-lg-7">
+                  <div class="test-wrap w-100 p-md-5 p-4">
+                    <h3 class="mb-4">Test</h3>
+                    <div id="form-message-warning" class="mb-4"></div>
+                    <div id="form-message-success" class="mb-4">
+                      Video tested successfully
+                    </div>
+
+                    <form
+                      method="POST"
+                      id="testForm"
+                      name="testForm"
+                      class="testForm"
+                      action=""
+                      enctype="multipart/form-data"
+                    >
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="label" for="name">Full Name</label>
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="name"
+                              id="name"
+                              placeholder="Name"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="label" for="confidence"
+                              >Confidence Score in %</label
+                            >
+                            <input
+                              type="number"
+                              class="form-control"
+                              name="confidence"
+                              id="confidence"
+                              placeholder="confidence"
+                              min="25"
+                              max="90"
+                              autocomplete="off"
+                              required
+                            />
+                          </div>
+                        </div>
+                        <!-- <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="label" for="items"
+                              >Items present</label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="items"
+                              id="items"
+                              placeholder="items"
+                              required
+                            />
+                          </div>
+                        </div> -->
+                        <div class="col-md-12">
+                          <div class="form-group">
+                            <label class="label" for="file"
+                              >Upload a image file or video not long than 20
+                              sec</label
+                            >
+                            <input
+                              type="file"
+                              class="form-control"
+                              id="file"
+                              name="file"
+                              autocomplete="off"
+                              required
+                              multiple
+                              accept=".png,.jpg,.jpeg,.mp4,.avi,"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button
+                            id="testBtn"
+                            type="submit"
+                            class="button cc-jumbo-button w-inline-block col-12"
+                            > Test the model
+                          </button>
+                            <script>
+                              const form = document.querySelector('#testForm');
+                              const btn = document.querySelector('#testBtn')
+                              form.addEventListener('submit',()=>{
+                                btn.innerHTML = `<div class="d-flex align-items-center justify-content-center"><div class="spinner-border spinner-border-sm mr-2" role="status"></div> <span>Analyzing...</div></div>`;
+                                // console.log(value);
+                              })
+                            </script>
+                            <div class="submitting"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <script src="js/jquery.min.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script> -->
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/jquery.min.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/popper.js') }}"
+    ></script>
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='js/main.js') }}"
+    ></script>
+  </body>
+</html>

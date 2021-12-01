@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DrinkwasteRobot | Monitoring dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='/css/style.css')}}"
+    />
+    <link
+      href="{{url_for('static', filename='css/index.css')}}"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <div
+      data-collapse="medium"
+      data-animation="default"
+      data-duration="400"
+      data-easing="ease"
+      data-easing2="ease"
+      role="banner"
+      class="navigation w-nav"
+    >
+      <!-- <img
+            src="{{url_for('static', filename='img/logo.png')}}"
+            width="108"
+            alt=""
+            class="logo-image"
+        /> -->
+      <div class="navigation-wrap">
+        <a href="/" aria-current="page" class="logo-link w-nav-brand w--current"
+          ><p
+            style="font-family: 'PT Sans', sans-serif; font-size: x-large"
+            class="font-bold"
+          >
+            SW
+          </p></a
+        >
+        <div class="menu">
+          <nav role="navigation" class="navigation-items w-nav-menu">
+            <a href="/about-us" class="navigation-item w-nav-link">About</a
+            ><a href="/test-result" class="navigation-item w-nav-link">Work</a
+            ><a href="#" class="navigation-item w-nav-link">team</a
+            ><a href="#" class="navigation-item w-nav-link">Blog</a
+            ><a href="#" class="navigation-item w-nav-link">Contact</a>
+          </nav>
+          <div class="menu-button w-nav-button">
+            <img
+              src="https://assets.website-files.com/5c6eb5400253230156de2bd6/5c6eb8fd2f27af658094fa4a_menu-icon.png"
+              width="22"
+              alt=""
+              class="menu-icon"
+            />
+          </div>
+        </div>
+        <a href="./test-model" class="button cc-contact-us w-inline-block"
+          ><div>Test Model</div></a
+        >
+      </div>
+    </div>
+
+    <div class="section cc-store-home-wrap">
+      <div class="mx-auto">
+
+        <div class='text-center heading-jumbo-small'>Results</div>
+        
+        <p>
+          {% with messages = get_flashed_messages() %}  
+          {% if messages %}
+          <ul>
+            {% for message in messages %}
+		  <li id="form-message-success" class="mb-4">{{ message }}</li>
+      {% endfor %}
+    	{% for error in errors %}
+		  <li id="form-message-success" class="mb-4">{{ message }}</li>
+      {% endfor %}
+		</ul>
+	  {% endif %}
+    {% endwith %}
+  </p>
+  
+  <!-- <div style="margin: 10px auto;">
+    <video autoplay="autoplay" controls="controls" preload="preload">
+      <source src="" type="video/mp4"></source>
+    </video>-->
+    {% if path_list %}
+    <div class='text-center'> {{username}} here are the results</div>
+    <div style="margin: 10px auto;" class="justify-content-between">
+    <div class="grid custom-grid">
+    {% for filepath in path_list %}
+    
+    {% if filepath %}
+      <div class="col-sm card mb-3">
+          <img src="{{url_for('static',filename=filepath)}}" alt="no img"/>
+          <p>{{info}}</p>
+        </div>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+    </div>
+  </div>
+</body>
+</html>
