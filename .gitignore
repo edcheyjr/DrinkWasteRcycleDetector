@@ -1,9 +1,2 @@
 #cache
-__pycache__
-*.ipynb
-# detected images
-static/detect
-# yolov5
-yolov5
-# uploaded images
-static/uploads
+./__pycache__

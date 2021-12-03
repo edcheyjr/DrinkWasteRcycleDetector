@@ -54,7 +54,7 @@ def predict(
   # image dictionary
  
 #  array to store other dictionary for all images and videos uploaded
-  objects_detected = []
+  # objects_detected = []
   # append data path to the data
   data.append(data_path)
 
@@ -142,7 +142,7 @@ def predict(
       else:
         print('do nothing')
         # append the dictionary to this list
-      objects_detected.append(img_objects_detect)   
+      objects_detected = [ img_objects_detect ]  
         # print and save results  
     else:
       error_file_path = "file doesn/'t exist"
