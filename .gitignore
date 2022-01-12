@@ -1,4 +1,4 @@
 #cache
-./__pycache__
+/__pycache__
 ./yolov5
 .ipynb

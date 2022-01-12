@@ -6,7 +6,7 @@ from os.path import join, dirname, realpath
 UPLOAD_IMG_FOLDER = join(dirname(realpath(__file__)),'static/uploads/img/') # upload folder for images
 UPLOAD_VID_FOLDER = join(dirname(realpath(__file__)), 'static/uploads/vids/') # upload folder for videos
 WEIGHTS = './yolov5/weight/best.pt' # weight to use
-UPLOAD_IMG_EXTENSION = ['.jpg', 'jpeg', '.png', '.gif'] # extensions accepted for images formats
+UPLOAD_IMG_EXTENSION = ['.jpg', '.jpeg', '.png', '.gif'] # extensions accepted for images formats
 UPLOAD_VID_EXTENSIONS =  ['.mp4', '.avi'] # extensions accepted for videos for video formats
 SAVE_DETECTION_DIR = 'static/detect' # saving directory for detected images
 SIZE = 640 # should be multiple of 32 to work well but i used 416 by 416 images for training testing and validation

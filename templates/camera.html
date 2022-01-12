@@ -35,6 +35,11 @@
         ></button>
         <button id="takePhotoButton" name="take Photo" type="button"></button>
         <button
+          id="recordVideoButton"
+          name="record Video"
+          type="button"
+        ></button>
+        <button
           id="toggleFullScreenButton"
           name="toggle FullScreen"
           type="button"
@@ -42,10 +47,12 @@
         ></button>
       </div>
     </div>
-    <!-- <script src="js/camerajs/adapter.min.js"></script>
-    <script src="js/camerajs/screenfull.min.js"></script>
-    <script src="js/cameras/howler.core.min.js"></script>
-    <script src="js/camerajs/main.js"></script> -->
+    <!-- recommended -->
+    <!-- <script src="https://www.WebRTC-Experiment.com/RecordRTC.js"></script> -->
+
+    <!-- use 5.5.6 or any other version on cdnjs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/RecordRTC/5.5.6/RecordRTC.js"></script>
+
     <script
       type="text/javascript"
       src="{{ url_for('static', filename='/js/camerajs/adapter.min.js') }}"

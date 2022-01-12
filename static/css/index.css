@@ -375,7 +375,7 @@ html[data-w-dynpage] [data-w-cloak] {
   cursor: pointer;
 }
 .w-webflow-badge > img {
-  display: inline-block !important;
+  display: none !important;
   visibility: visible !important;
   opacity: 1 !important;
   vertical-align: middle !important;
@@ -2142,6 +2142,34 @@ figcaption {
 .button:active {
   background-color: #43464d;
 }
+.button-outline {
+  padding: 10px 23px;
+  border-radius: 0px;
+  border: solid 2px #1a1b1f;
+  background-color: transparent;
+  color: #1a1b1f;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.button-outline.cc-jumbo-button {
+  padding: 14px 32px;
+  font-size: 14px;
+  line-height: 26px;
+}
+.button-outline:hover {
+  -webkit-transition: background-color 400ms ease, opacity 400ms ease,
+    color 400ms ease;
+  transition: background-color 400ms ease, opacity 400ms ease, color 400ms ease;
+  background-color: #32343a;
+  color: #fff;
+}
+.button-outline:active {
+  background-color: #43464d;
+}
 
 .button.cc-jumbo-button {
   padding: 16px 35px;
@@ -2163,6 +2191,10 @@ figcaption {
 }
 
 .button.cc-contact-us {
+  position: relative;
+  z-index: 5;
+}
+.button-outline.cc-contact-us {
   position: relative;
   z-index: 5;
 }
@@ -3184,6 +3216,9 @@ figcaption {
     justify-content: center;
   }
   .button.cc-contact-us {
+    display: none;
+  }
+  .button-outline.cc-contact-us {
     display: none;
   }
   .heading-jumbo {

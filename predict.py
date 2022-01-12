@@ -21,7 +21,7 @@ import numpy as np
 
 # predict function
 '''
-
+This function does the preodiction for both videos and images
 '''
 
 def predict(
@@ -32,6 +32,8 @@ def predict(
   model_conf = 0.3,  # model confidence
   save_dir= 'static/detect', # detect path 
   size = 640, # default 416
+  objects_detected = [], # objects detected array need to be passed in order to get the dffetent class of the images
+  enumerate = 0 , #number of loop depending on the number of images being selected used by the objects_detected to insert classes depending on the keys 
   webcam = False, # webcam
 ):
   # model setup
@@ -50,6 +52,7 @@ def predict(
   imgs =[]
   # videos url stores here
   vids =[]
+
   
   # image dictionary
  
@@ -60,11 +63,11 @@ def predict(
 
   vids_save_dir= save_dir +'/vids/'
   imgs_save_dir=  save_dir +'/img/'
+  
 
   i=0
 
   for f in data:
-    
     if exists(f):
       file_basename = basename(f)
       file_ext = splitext(file_basename)[1]
@@ -88,11 +91,6 @@ def predict(
         new_result = new_df.xywh[0]['name']
         classes = new_result.tolist()
         print(classes)
-        for iterate in classes:
-          if iterate not in img_objects_detect:
-              img_objects_detect[iterate] = 1
-          else:
-              img_objects_detect[iterate] = img_objects_detect[iterate] + 1
         # print and save results
         results.print()
         new_exp_dir = 'new_img_exp'+str(i)
@@ -114,12 +112,28 @@ def predict(
         save_dir_arr = []
         save_dir_arr = new_imgs_save_dir.split('/')
         detect_dir = join(save_dir_arr[1], save_dir_arr[2], save_dir_arr[3])
-        
+        value_list = []
+        class_list =[]
+        list_image_path =[]
+      # store all the info into a dict
         path =join(detect_dir,'image0.jpg').replace('\\','/') #replace all backslashes woth forward slash
+        if classes:
+          for iterate in classes:
+            if iterate not in class_list:
+              class_list.append(iterate)
+              value_list.append(1)
+            else:
+              value_list[len(class_list)-1] += 1
 
-
-        # return the list
-
+          # list_image_path.append(path)    #image list
+          value_list.insert(-1,value_list[len(class_list)-1])
+          value_list.pop(len(class_list)-1)
+        else:
+          class_list.append('no class identified')
+          value_list.append(0)
+        img_objects_detect['class'] = class_list
+        img_objects_detect['value'] = value_list
+        img_objects_detect['imagePath'] = path
 
         # return img_objects_detect, image_path # classes predicted list, image_path of predicted image str
         # results.show() ['.mp4', '.avi']
@@ -130,25 +144,24 @@ def predict(
         vids.append(f)
         # Inference
         for vid in vids:
-          img_objects_detect,path=detect_video(model,vid,file_name,vids_save_dir)
+          img_objects_detect, list_image_path =detect_video(model,vid,file_name,vids_save_dir)
         # check_dict.save('static/detect/vids')  
-
-        # return
-        # return check_dict ,list_of_path # classes predicted in dict, image_path of predicted frames in the video list
       elif webcam is True:
-
       # TODO: create script to open webcam
         command ='!python detect.py --weights weight_path  --conf model_conf --source 0 --project ./static/detect/ --name vids' 
       else:
         print('do nothing')
-        # append the dictionary to this list
-      objects_detected = [ img_objects_detect ]  
+        path =''
+      # append the dictionary to this list
+      objects_detected.insert(enumerate,img_objects_detect)
+      print('objects_detected', objects_detected)
+      
         # print and save results  
     else:
       error_file_path = "file doesn/'t exist"
       print(error_file_path)
   # return path and all object detected in the videos or images 
-  return objects_detected ,path
+  return objects_detected, list_image_path
 
 # video predict
 # function detect video frames
@@ -247,13 +260,23 @@ save_dir = None # save path
         for inner_loop in outer_loop:
             if inner_loop:
                 detected_classes.append(inner_loop)
-
+    # value_list =[]
+    # class_list =[]
     for iterate in detected_classes:
-        if iterate not in check_dict:
-            check_dict[iterate] = 1
-        else:
-            check_dict[iterate] = check_dict[iterate] + 1
+      if iterate not in check_dict:
+        check_dict[iterate] = 1
+      else:
+        check_dict[iterate] =check_dict[iterate]+ 1
+          # value_list[len(class_list)-1] += 1
+      # value_list.insert(-1,value_list[len(class_list)-1])
+      # value_list.pop(len(class_list)-1)
+      # class_list.append(iterate)
+      # value_list.append(check_dict[iterate])
+      # check_dict['class'] = class_list
+      # check_dict['value'] = value_list
+    # check_dict['imagePath'] = list_of_frames_path
+      # check_dict['imagePath'] = path
     
-    return check_dict,list_of_frames_path
+    return check_dict, list_of_frames_path
 
 

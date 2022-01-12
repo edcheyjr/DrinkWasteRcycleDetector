@@ -8,8 +8,10 @@
 
 var takeSnapshotUI = createClickFeedbackUI()
 
+var recordingState = false
 var video
 var takePhotoButton
+var recordVideoButton
 var toggleFullScreenButton
 var switchCameraButton
 var amountOfCameras = 0
@@ -89,10 +91,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
 function initCameraUI() {
   video = document.getElementById('video')
-
   takePhotoButton = document.getElementById('takePhotoButton')
   toggleFullScreenButton = document.getElementById('toggleFullScreenButton')
   switchCameraButton = document.getElementById('switchCameraButton')
+  recordVideoButton = document.querySelector('#recordVideoButton')
 
   // https://developer.mozilla.org/nl/docs/Web/HTML/Element/button
   // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_button_role
@@ -100,6 +102,30 @@ function initCameraUI() {
   takePhotoButton.addEventListener('click', function () {
     takeSnapshotUI()
     takeSnapshot()
+  })
+
+  recordVideoButton.addEventListener('click', () => {
+    takeSnapshotUI()
+    navigator.mediaDevices
+      .getUserMedia({
+        video: true,
+        audio: true,
+      })
+      .then(async function (stream) {
+        let recorder = RecordRTC(stream, {
+          type: 'video',
+        })
+        recordingState = !recordingState
+        console.log(recordingState)
+
+        let record = recordVideo(recorder)
+        recordVideoButton.style.backgroundColor = 'red'
+
+        if (recordingState == false) {
+          recordVideoButton.style.backgroundColor = 'rgba(255, 57, 57, 0.5)'
+          stopRecordingVideo(record)
+        }
+      })
   })
 
   // -- fullscreen part
@@ -228,7 +254,48 @@ function initCameraStream() {
     console.error('getUserMedia() error: ', error)
   }
 }
+function recordVideo(recorder) {
+  recorder.startRecording()
+  return recorder
+}
+function stopRecordingVideo(recorder) {
+  recorder.stopRecording(() => {
+    let blob = recorder.getBlob()
+    invokeSaveAsDialog(blob)
+    console.log(blob)
+    blobToBase64(blob).then((base64) => {
+      maximum_blobs = 1000
+      let blob_id = Math.round(new Date().getTime() / 1000)
+      const jsonString = JSON.stringify({ blob_id: blob_id, blob: base64 })
+      console.log(jsonString)
+      const url = `${window.origin}/camera/blob`
+      // do fetch it to the server side for processing
+      fetch(url, {
+        method: 'POST',
+        credentials: 'include',
+        cache: 'no-cache',
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+        body: jsonString,
+      })
+        .then((response) => response.json())
 
+        .then((data) => {
+          // console.log('Success:', data)
+          // const PageId = document.querySelector('#htmlPageResult')
+          // PageId.
+          const url = `${window.origin}/test-result`
+          console.log(url)
+          // window.open(url)
+          document.write(data)
+          // window.close()
+        })
+        //Then with the error generated...
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    })
+  })
+}
 function takeSnapshot() {
   // if you'd like to show the canvas add it to the DOM
   let canvasFrame = document.querySelector('canvas-here')
@@ -260,7 +327,50 @@ function takeSnapshot() {
   getCanvasBlob(canvas).then(function (blob) {
     // do something with the image blob
     // return blob
-    console.log(blob)
+    blobToBase64(blob).then((base64) => {
+      // do something with the base64
+      // stringfy the blob to json
+      maximum_blobs = 1000
+      let blob_id = Math.round(new Date().getTime() / 1000)
+      const jsonString = JSON.stringify({ blob_id: blob_id, blob: base64 })
+      // console.log(jsonString)
+      const url = `${window.origin}/camera/blob`
+      // do fetch it to the server side for processing
+      fetch(url, {
+        method: 'POST',
+        credentials: 'include',
+        cache: 'no-cache',
+        headers: new Headers({ 'Content-Type': 'application/json' }),
+        body: jsonString,
+      })
+        .then(
+          (response) => response.json()
+          // Then with the data from the response in JSON...
+          //  {
+          //   if (response.status !== 200) {
+          //     console.log(`response ws not 200${response.status}`)
+          //   }
+          //   response.json().then((data) => {
+          //     console.log(data)
+          //   })
+          // }
+        )
+
+        .then((data) => {
+          // console.log('Success:', data)
+          // const PageId = document.querySelector('#htmlPageResult')
+          // PageId.
+          const url = `${window.origin}/test-result`
+          console.log(url)
+          // window.open(url)
+          document.write(data)
+          // window.close()
+        })
+        //Then with the error generated...
+        .catch((error) => {
+          console.error('Error:', error)
+        })
+    })
   })
 }
 
@@ -293,4 +403,14 @@ function createClickFeedbackUI() {
       setTimeout(setFalseAgain, timeOut)
     }
   }
+}
+
+const blobToBase64 = (blob) => {
+  return new Promise((resolve, _) => {
+    const reader = new FileReader()
+    reader.readAsDataURL(blob)
+    reader.onloadend = function () {
+      resolve(reader.result)
+    }
+  })
 }

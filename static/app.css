@@ -70,6 +70,24 @@ button {
 #takePhotoButton:active {
   background-color: #fff;
 }
+#recordVideoButton {
+  width: 80px;
+  height: 80px;
+  background-image: url('img/record_video.svg');
+  border-radius: 50%;
+  top: calc(50% - 40px);
+  left: calc(20% - 40px);
+  background-color: rgba(209, 66, 66, 0.5);
+}
+@media screen and (min-width: 814px) {
+  #recordVideoButton {
+    left: calc(50% - 40px);
+    top: calc(20% - 40px);
+  }
+}
+/* #recordVideoButton:active {
+  background-color: rgba(255, 57, 57, 0.5);
+} */
 
 #toggleFullScreenButton {
   display: none;

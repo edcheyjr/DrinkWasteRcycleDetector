@@ -39,7 +39,13 @@ def aspect_ratio_cal(width, height ,org_width, org_height, aspect_ratio = False)
 
 
 # image resize
-def image_resize(imgPath, resizePath, width, height, mantain_aspect_ratio = None):
+def image_resize(
+    imgPath, # original path
+    resizePath # resized path
+    , width # width of the image
+    , height # height of the image
+, mantain_aspect_ratio = None  # @bool mantain_aspect_ratio 
+):
 # declare list to store images before and after resize
     image_list = []
     resized_image = []
@@ -89,7 +95,7 @@ def image_resize(imgPath, resizePath, width, height, mantain_aspect_ratio = None
 #         image.show()
         resized_img = image.resize((int(new_width), int(new_height)))
         resized_image.append(resized_img)
-         
+    
 #     save images into a folder which will be used by detect 
     for rsz_img in resized_image:
         print(rsz_img)

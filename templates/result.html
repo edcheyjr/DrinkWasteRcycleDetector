@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="htmlPageResult">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -57,9 +57,16 @@
             />
           </div>
         </div>
-        <a href="./test-model" class="button cc-contact-us w-inline-block"
-          ><div>Test Model</div></a
-        >
+        <div>
+          <a href="./test-model" class="button cc-contact-us w-inline-block"
+            ><div>Test Model</div></a
+          >
+          <a
+            href="./phone-camera"
+            class="button-outline cc-contact-us w-inline-block"
+            ><div>Camera</div></a
+          >
+        </div>
       </div>
     </div>
 
@@ -73,20 +80,61 @@
           {% if messages %}
           <ul>
             {% for message in messages %}
-		  <li id="form-message-success" class="mb-4">{{ message }}</li>
-      {% endfor %}
-    	{% for error in errors %}
-		  <li id="form-message-success" class="mb-4">{{ message }}</li>
-      {% endfor %}
-		</ul>
-	  {% endif %}
-    {% endwith %}
-  </p>
+        <li id="form-message-success" class="mb-4">{{ message }}</li>
+          {% endfor %}
+        {% for error in errors %}
+        <li id="form-message-success" class="mb-4">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+        {% endwith %}
+      </p>
   
   <!-- <div style="margin: 10px auto;">
     <video autoplay="autoplay" controls="controls" preload="preload">
       <source src="" type="video/mp4"></source>
     </video>-->
+    {%if is_video != True %}
+    <div class='text-center'> {{username}} here are the results</div>
+    <div style="margin: 10px auto;" class="justify-content-between">
+      
+      <div class="grid custom-grid">
+      {% if classes %}
+        {% for class in classes %}
+        <div class="col-sm card mb-3">
+          {% if class %}
+
+            <img src="{{url_for('static',filename=class['imagePath'])}}" alt="no img"/>
+            <div class="justify-content-center mx-auto mt-2">
+              <div class="justify-content-between row d-flex ">
+              {% for value in class['value'] %}
+                <p class="text-primary mr-2">{{value}}</p>
+                {% endfor %}
+              </div>
+              <div class=" justify-content-between row d-flex">
+              {% for class in class['class'] %}
+                <p class=" text-primary mr-2">{{class}}</p>
+                {% endfor %}
+              </div>
+            </div>
+            {% else %}
+            <div class="text-center">No class</div>
+            {% endif %}
+          </div>
+          {% endfor %}
+          {% else %}
+              <div class = "text-primary">No class was identified</div>
+          {% endif %}      
+        </div>
+      </div>
+      {%if  classes.clear() == None %}
+      <div></div>
+      {% else %}
+        {{classes.clear()}}
+      {% endif %}  
+    </div>
+
+    {% else %}
     {% if path_list %}
     <div class='text-center'> {{username}} here are the results</div>
     <div style="margin: 10px auto;" class="justify-content-between">
@@ -96,14 +144,40 @@
     {% if filepath %}
       <div class="col-sm card mb-3">
           <img src="{{url_for('static',filename=filepath)}}" alt="no img"/>
-          <p>{{info}}</p>
+           {% if classes %}
+        {% for class in classes %}
+           {% if class %}
+            <div class="justify-content-center mx-auto mt-2">
+              <div class="justify-content-between row d-flex ">
+              {% for value in class.values() %}
+                <p class="text-primary mr-2">{{value}}</p>
+                {% endfor %}
+              </div>
+              <div class=" justify-content-between row d-flex">
+              {% for key in class.keys() %}
+                <p class=" text-primary mr-2">{{key}}</p>
+                {% endfor %}
+              </div>
+            </div>
+            {% else %}
+            <div class="text-center">No class</div>
+            {% endif %}
+        {% endfor %}
+          {% else %}
+              <div class = "text-primary">No class was identified</div>
+          {% endif %}      
         </div>
         {% endif %}
-        {% endfor %}
+      {% endfor %}
       </div>
     </div>
     {% endif %}
-    </div>
+    {% endif %}
+  </div>
   </div>
 </body>
+<script
+      type="text/javascript"
+      src="{{ url_for('static', filename='/js/camerajs/main.js') }}"
+    ></script>
 </html>
