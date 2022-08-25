@@ -9,7 +9,7 @@ from flask_cors import CORS
 from os.path import  splitext , basename
 from base64Topng import base64ToPngConverter
 from upload import upload_file_predict
-from os import _exit, path
+from os import path
 # define RESTFul api
 CORS(app)
 api = Api(app)
