@@ -24,4 +24,4 @@ it used **[Yolov5](https://github.com/ultra/yolov5)**
 
 # form for uploading
 
-<img src="./static/img/formW.png">
+<img src="./static/img/form.png">
