@@ -1,27 +1,56 @@
-# Drink Waste Object Detection
+---
+title: "Waste Material Detection with AI"
+date: "2023-09-14"
+paper: [Drink Waste AI Documentation](https://drive.google.com/file/d/1AFDolgvZHiIeU5-q8bNTIMlSufdHFS8k/view?usp=drive_link)
+---
 
-this is a project focusing on how AI can be used to detect waste material this could be use for recyling plants and also devices and robot that could be used for collection of the waste.It is use website to demonstrate how it could work. The page are as below
+# Introduction
 
-it used **[Yolov5](https://github.com/ultra/yolov5)**
+This project aims to leverage artificial intelligence (AI) to detect waste materials, with potential applications in recycling plants, as well as the development of waste-collecting devices and robots. The accompanying website serves as a demonstration of how this technology can be implemented effectively.
 
-# home page
+## Technology Stack
 
-<img src="./static/img/home.png">
+- **Object Detection Model**: We employ YOLOv5, a powerful object detection model, to identify waste materials.
+- **Dataset**: Our gratitude goes to Kaggle for providing access to the [Drinking Waste Classification dataset](https://www.kaggle.com/datasets/arkadiyhacks/drinking-waste-classification). This dataset includes contributions from Gary Thung and Mindy Yang, who manually collected portions of it. Their dedication to this task is greatly appreciated. You can find their repository [here](https://github.com/garythung/trashnet).
 
-# result page
+# Pages
 
-#### ~ result from uploaded photo
+## Home Page
 
-<img src="./static/img/detection-result-uploaded-photo.png">
+![Home Page](./static/img/home.png)
 
-#### ~ result from uploaded video
+## Result Page
 
-<img src="./static/img/detection-result.png">
+### Result from Uploaded Photo
 
-# camera used for detection
+![Result from Uploaded Photo](./static/img/detection-result-uploaded-photo.png)
 
-<img src="./static/img/camera.png">
+### Result from Uploaded Video
 
-# form for uploading
+![Result from Uploaded Video](./static/img/detection-result.png)
 
-<img src="./static/img/form.png">
+## Camera Setup
+
+![Camera Setup](./static/img/camera.png)
+
+## Upload Form
+
+![Upload Form](./static/img/form.png)
+
+# License
+
+This project is licensed under the [M License](LICENSE.md). Please review the [LICENSE.md](LICENSE.md) file for detailed licensing information.
+
+# Contributing
+
+We welcome contributions from the community. To contribute, follow these guidelines:
+
+1. Fork the project repository.
+2. Create a new branch for your contribution: `git checkout -b feature/your-feature-name`.
+3. Make your changes and commit them: `git commit -m "Add your feature"`.
+4. Push your changes to your fork: `git push origin feature/your-feature-name`.
+5. Open a pull request on the main repository with a clear description of your changes.
+
+Kindly adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) when contributing.
+
+By contributing to this project, you agree to license your contributions under the MIT License.
