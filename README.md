@@ -40,7 +40,7 @@ This project aims to leverage artificial intelligence (AI) to detect waste mater
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE.md). Please review the [LICENSE.md](LICENSE.md) file for detailed licensing information.
+This project is licensed under the [MIT License](/LICENSE). Please review the [LICENSE.md](LICENSE) file for detailed licensing information.
 
 ## Contributing
 
@@ -52,6 +52,6 @@ We welcome contributions from the community. To contribute, follow these guideli
 4. Push your changes to your fork: `git push origin feature/your-feature-name`.
 5. Open a pull request on the main repository with a clear description of your changes.
 
-Kindly adhere to our [Code of Conduct](CODE_OF_CONDUCT.md) when contributing.
+Kindly adhere to our [Code of Conduct](/CODE_OF_CONDUCT.md) when contributing.
 
 By contributing to this project, you agree to license your contributions under the MIT License.
