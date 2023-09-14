@@ -1,13 +1,13 @@
 ---
 title: "Waste Material Detection with AI"
 date: "2023-09-14"
-paper: [Drink Waste AI Documentation](https://drive.google.com/file/d/1AFDolgvZHiIeU5-q8bNTIMlSufdHFS8k/view?usp=drive_link)
+paper: "[Drink Waste AI Documentation](https://drive.google.com/file/d/1AFDolgvZHiIeU5-q8bNTIMlSufdHFS8k/view?usp=drive_link)"
 ---
 
 # Introduction
 
 This project aims to leverage artificial intelligence (AI) to detect waste materials, with potential applications in recycling plants, as well as the development of waste-collecting devices and robots. The accompanying website serves as a demonstration of how this technology can be implemented effectively.
-
+[Read More](https://drive.google.com/file/d/1AFDolgvZHiIeU5-q8bNTIMlSufdHFS8k/view?usp=drive_link)
 ## Technology Stack
 
 - **Object Detection Model**: We employ YOLOv5, a powerful object detection model, to identify waste materials.
@@ -39,7 +39,7 @@ This project aims to leverage artificial intelligence (AI) to detect waste mater
 
 # License
 
-This project is licensed under the [M License](LICENSE.md). Please review the [LICENSE.md](LICENSE.md) file for detailed licensing information.
+This project is licensed under the [MIT License](LICENSE.md). Please review the [LICENSE.md](LICENSE.md) file for detailed licensing information.
 
 # Contributing
 
