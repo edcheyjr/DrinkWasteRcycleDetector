@@ -1,7 +1,6 @@
 ---
 title: "Waste Material Detection with AI"
 date: "2023-09-14"
-paper: "[Drink Waste AI Documentation](https://drive.google.com/file/d/1AFDolgvZHiIeU5-q8bNTIMlSufdHFS8k/view?usp=drive_link)"
 ---
 
 # Introduction
